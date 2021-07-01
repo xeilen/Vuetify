@@ -1,19 +1,19 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="sale in sales" :key="sale.title" md="4">
+      <v-col v-for="sale in sales" :key="sale.title" cols="12" sm="4">
         <SalesGraph :sale="sale" />
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col v-for="statistic in statistics" :key="statistic.title" >
+      <v-col v-for="statistic in statistics" :key="statistic.title" cols="12" sm="6" md="3" >
         <StatisticCard :statistic="statistic"/>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="8">
+      <v-col cols="12" md="8">
         <EmployeesTable :employees="employees" @select-employ="selectEmployee"/>
       </v-col>
 
@@ -25,6 +25,7 @@
 
     <v-snackbar
         v-model="snackbar"
+        :left="$vuetify.breakpoint.mdAndUp"
     >
       You have been selected {{ text }}
 
