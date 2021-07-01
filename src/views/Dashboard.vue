@@ -2,9 +2,10 @@
   <div>
     <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="employees"
         :items-per-page="5"
         class="elevation-1"
+        multi-sort
         @click:row="selectRow"
     />
 
@@ -29,24 +30,24 @@
 </template>
 
 <script>
+import employees from '../data/employees.json'
 export default {
   name: "Dashboard",
   data () {
     return {
+      employees,
       snackbar: false,
       text: '',
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: 'Name',
           align: 'start',
           sortable: false,
           value: 'name',
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
+        { text: 'Position', value: 'title' },
+        { text: 'ID', value: 'id' },
+        { text: 'Salary', value: 'salary' },
       ],
       desserts: [
         {
@@ -135,7 +136,7 @@ export default {
   methods: {
     selectRow(event) {
       console.log(event)
-      this.text = event.name
+      this.text = event.name + ' ' + event.title
       this.snackbar = true
     }
   }
